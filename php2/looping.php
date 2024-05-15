@@ -99,13 +99,15 @@
         
         // Output: 
 
-        foreach( $items as $a ){
+        foreach( $items as $data ){
             $a = [
-                "id" => $items[0],
-                "name" => $items[1],
-                "price" => $items[2],
-                "desc" => $items[3],
+                "id" => $data[0],
+                "name" => $data[1],
+                "price" => $data[2],
+                "desc" => $data[3],
             ];
+            print_r($a);
+            echo "<br>";
         }
 
         // foreach ( $items as $i){
