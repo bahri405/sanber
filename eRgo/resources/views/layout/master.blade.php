@@ -102,6 +102,7 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('/template/dist/js/adminlte.min.js') }}"></script>
 
+
 @stack('scripts')
 
 </body>
