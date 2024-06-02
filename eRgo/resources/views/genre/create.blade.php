@@ -1,12 +1,12 @@
 @extends('layout.master')
 
 @section('judul')
-  Halaman Tambah Cast
+  Halaman Tambah Genre
 @endsection
 
 @section('content')
-    
-    <form action="/cast" method="post">
+<h2> Tambah Data </h2>
+    <form action="/genre" method="post">
         {{-- validaton --}}
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -20,18 +20,8 @@
 
         @csrf
         <div class="form-group">
-        <label >Nama</label>
-        <input type="text" name="nama" class="form-control">
-        
-        </div>
-        <div class="form-group">
-        <label >Umur</label>
-        <input type="number" name="umur" class="form-control" >
-        </div>
-
-        <div class="form-group">
-        <label >Bio</label>
-        <textarea name="bio" class="form-control" cols="30" rows="10"></textarea>
+            <label >Nama Genre</label>
+            <input type="text" name="nama" class="form-control">
         </div>
         
         <button type="submit" class="btn btn-primary">Submit</button>

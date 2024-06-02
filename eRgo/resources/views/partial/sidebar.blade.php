@@ -6,7 +6,13 @@
         <img src="{{ asset('/template/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        @auth
+        <a href="#" class="d-block"> hi {{ Auth::user()->name }}  ({{ Auth::user()->profile->umur }})</a>
+        @endauth
+
+        @guest
+        <a href="#" class="d-block"> hi guest</a>
+        @endguest
       </div>
     </div>
 
@@ -33,7 +39,6 @@
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
-              
             </p>
           </a>
         </li>
@@ -58,11 +63,71 @@
                 <p>Data Table</p>
               </a>
             </li>
-            
           </ul>
         </li>
+        <li class="nav-item">
+          <a href="/cast" class="nav-link">
+            <i class="nav-icon fas fa-video"></i>
+            <p>
+              Cast
+            </p>
+          </a>
+        </li>
+        @auth
+        <li class="nav-item">
+          <a href="/genre" class="nav-link">
+            <i class="nav-icon fas fa-align-justify"></i>
+            <p>
+              Genre
+            </p>
+          </a>
+        </li>
+        @endauth
+        @auth
+        <li class="nav-item">
+          <a href="/profile" class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+              Profile
+            </p>
+          </a>
+        </li>
+        @endauth
+
         
-        
+        <li class="nav-item">
+          <a href="/film" class="nav-link">
+            <i class="nav-icon fas fa-film"></i>
+            <p>
+              List Film
+            </p>
+          </a>
+        </li>
+
+          @auth
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+          </li>
+          @endauth
+
+          @guest
+          <li class="nav-item">
+            <a href="/login" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Login
+              </p>
+            </a>
+          </li>
+          @endguest
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

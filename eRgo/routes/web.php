@@ -1,9 +1,16 @@
 <?php
 
+use App\Models\Profile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CastController;
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\PeranController;
+use App\Http\Controllers\KritikController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +36,9 @@ Route::get('/data_table', function(){
     return view('page/data_table');
 });
 
-
-
-
-// menambah data C = create
+Route::middleware(['auth',])->group(function () {
+    
+    // menambah data C = create
 Route::get('/cast/create', [CastController::class, 'create']);
 // buat route dan function untuk menyiman data inputan ke database
 Route::post('/cast', [CastController::class, 'store']);
@@ -54,3 +60,27 @@ Route::put('/cast/{id}' , [CastController::class , 'update']);
 
 // delete
 Route::delete('/cast/{id}', [CastController::class , 'destroy']);
+
+// genre
+Route::resource('genre', GenreController::class);
+
+// peran
+Route::resource('peran', PeranController::class);
+
+// profile
+// Route::get('/profile' , [ProfileController::class , 'index' ]);
+// Route::put('/profile{id}' , [ProfileController::class , 'update' ]);
+Route::resource('profile', ProfileController::class)->only(['index','update']);
+
+// kritik
+// Route::post('/kritik{id}', [KritikController::class, 'tambah']);
+// Route::resource('kritik', KritikController::class);
+});
+
+Route::post('/kritik/{id}', [KritikController::class, 'tambah'])->middleware('auth');
+// film
+Route::resource('film', FilmController::class);
+
+Auth::routes();
+
+

@@ -1,41 +1,39 @@
 @extends('layout.master')
 
 @section('judul')
-    halaman Cast
+    Halaman Genre
 @endsection
 
 
 @section('content')
-<a href="/cast/create" id="tambah" class="btn btn-sm btn-primary">Tambah</a>
+<a href="/genre/create"  class="btn btn-sm btn-primary">Tambah</a>
 
     <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nama</th>
-            <th scope="col">Umur</th>
             <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-            @forelse ($cast as $key => $item)
+            @forelse ($genre as $key => $item)
                 <tr>
                     <th scope="row">{{ $key + 1 }}</th>
-                    <td>{{ $item ->nama  }}</td>
-                    <td>{{ $item->umur }}</td>
+                    <td>{{ $item->nama }}</td>
                     
                     <td>
                         
-                        <form action="/cast/{{ $item->id }}" method="post">
+                        <form action="/genre/{{ $item->id }}" method="post">
                             @csrf
                             @method('delete')
-                            <a href="/cast/{{ $item->id }}" class="btn btn-sm btn-info">Detail</a>
-                            <a href="/cast/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="/genre/{{ $item->id }}" class="btn btn-sm btn-info">Detail</a>
+                            <a href="/genre/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                             <input type="submit" id="delete" class="btn btn-sm btn-danger" value="Delete">
                         </form>
                     </td>
                 </tr>
-            @empty                                 
+            @empty
                 <p>No users</p>
             @endforelse
         
